@@ -1,39 +1,43 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function header() {
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
     <div className="container-fluid d-flex align-items-center justify-content-between">
-      <a
-        href="index.html"
-        className="logo d-flex align-items-center  me-auto me-lg-0"
-      >
+      <Link className="logo d-flex align-items-center  me-auto me-lg-0" href='/'>
         {/* Uncomment the line below if you also wish to use an image logo */}
         {/* <img src="assets/img/logo.png" alt=""> */}
         <i className="bi bi-camera" />
         <h1>Cryptic Titan</h1>
-      </a>
+      </Link>
       <nav id="navbar" className="navbar">
         <ul>
           <li>
-            <a href="gallery-1.html">Arts</a>
+            <Link href="/arts">Arts</Link>
           </li>
           <li>
-            <a href="gallery-2.html">Comics &amp; Illustration</a>
+            <Link href="/comics-and-illustration">Comics &amp; Illustration</Link>
           </li>
           <li>
-            <a href="gallery-3.html">Design &amp; Tech</a>
+            <Link href="/design-tech">Design &amp; Tech</Link>
           </li>
           <li>
-            <a href="gallery-4.html">Film</a>
+            <Link href="/film">Film</Link>
           </li>
           <li>
-            <a href="gallery-5.html">Games</a>
+            <Link href="/games">Games</Link>
           </li>
         </ul>
       </nav>
       {/* .navbar */}
       <div className="header-social-links">
+        <Link href='/login'>
+          login
+        </Link>
+        <Link href='/register'>
+          register
+        </Link>
         <a href="#" className="twitter">
           <i className="bi bi-twitter" />
         </a>
