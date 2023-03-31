@@ -1,10 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
+
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 const inter = Inter({ subsets: ['latin'] })
-
+import Link from 'next/link'
 export default function Home() {
   return (
     <>
@@ -37,9 +37,9 @@ export default function Home() {
             Đầu tư theo cách bạn muốn, hãy đầu tư vào các dự án khởi nghiệp ở
             đây, bạn sẽ trở thành tỉ phú ngay bâu giờ hoặc không bao giờ
           </p>
-          <a href="contact.html" className="btn-get-started">
-            Available for hire
-          </a>
+          <Link href="/create-project" className="btn-get-started">
+            bắt đầu dự án đầu tiên
+          </Link>
         </div>
       </div>
     </div>
@@ -62,9 +62,36 @@ export default function Home() {
                 title="Gallery 2"
                 className="glightbox preview-link"
               />
-              <a href="gallery-single.html" className="details-link">
+              <Link href="/detail-project" className="details-link">
                 <i className="bi bi-link-45deg" />
-              </a>
+              </Link>
+              <button>Join</button>
+            </div>
+            <div className="user_information">
+              <progress className="my_progress" value={0} max={100} />
+              <p>Tên dự án:</p>
+              <p>Số người đã ủng hộ:</p>
+              <p>Thời gian còn lại:</p>
+            </div>
+          </div>
+        </div>
+        {/* End Gallery Item */}
+        <div className="col-xl-4 col-lg-4 col-md-6">
+          <div className="gallery-item h-100">
+            <img
+              src="assets/img/gallery/gallery-2.jpg"
+              className="img-fluid"
+              alt=""
+            />
+            <div className="gallery-links d-flex align-items-center justify-content-center">
+              <a
+                href="assets/img/gallery/gallery-2.jpg"
+                title="Gallery 2"
+                className="glightbox preview-link"
+              />
+              <Link href="detail-project" className="details-link">
+                <i className="bi bi-link-45deg" />
+              </Link>
               <button>Join</button>
             </div>
             <div className="user_information">
@@ -89,36 +116,9 @@ export default function Home() {
                 title="Gallery 2"
                 className="glightbox preview-link"
               />
-              <a href="gallery-single.html" className="details-link">
+              <Link href="detail-project" className="details-link">
                 <i className="bi bi-link-45deg" />
-              </a>
-              <button>Join</button>
-            </div>
-            <div className="user_information">
-              <progress className="my_progress" value={0} max={100} />
-              <p>Thông tin người gọi vốn:</p>
-              <p>Số người đã ủng hộ:</p>
-              <p>Thời gian còn lại:</p>
-            </div>
-          </div>
-        </div>
-        {/* End Gallery Item */}
-        <div className="col-xl-4 col-lg-4 col-md-6">
-          <div className="gallery-item h-100">
-            <img
-              src="assets/img/gallery/gallery-2.jpg"
-              className="img-fluid"
-              alt=""
-            />
-            <div className="gallery-links d-flex align-items-center justify-content-center">
-              <a
-                href="assets/img/gallery/gallery-2.jpg"
-                title="Gallery 2"
-                className="glightbox preview-link"
-              />
-              <a href="gallery-single.html" className="details-link">
-                <i className="bi bi-link-45deg" />
-              </a>
+              </Link>
               <button>Join</button>
             </div>
             <div className="user_information">

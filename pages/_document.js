@@ -6,11 +6,13 @@ export default function Document() {
       <Head />
       <body>
 
-      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+       <link rel="preconnect" href="https://fonts.googleapis.com"/>
        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
         <Main />
         <NextScript />
+        <Script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></Script>
+        <Script src="//code.jquery.com/jquery-1.11.1.min.js"></Script>
         <Script src="./public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></Script>
         <Script src="./public/assets/vendor/swiper/swiper-bundle.min.js"></Script>
         <Script src="./public/assets/vendor/glightbox/js/glightbox.min.js"></Script>

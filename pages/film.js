@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Link from 'next/link'
 import React from 'react'
 
 export default function film() {
@@ -17,9 +17,9 @@ export default function film() {
             debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat
             ipsum dolorem.
           </p>
-          <a className="cta-btn" href="contact.html">
-            Available for hire
-          </a>
+          <Link className="cta-btn" href="/create-project">
+          bắt đầu dự án đầu tiên
+          </Link>
         </div>
       </div>
     </div>

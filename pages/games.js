@@ -1,6 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
-import React from 'react'
 
+import React from 'react'
+import Link from 'next/link'
 export default function games() {
   return (
     <>
@@ -17,9 +17,9 @@ export default function games() {
             debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat
             ipsum dolorem.
           </p>
-          <a className="cta-btn" href="contact.html">
-            Available for hire
-          </a>
+          <Link className="cta-btn" href="/create-project">
+          bắt đầu dự án đầu tiên
+          </Link>
         </div>
       </div>
     </div>

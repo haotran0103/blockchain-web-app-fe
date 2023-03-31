@@ -4,20 +4,7 @@ export default function register() {
   return (
     <>
     <main id="main" data-aos="fade">
-  {/* ======= End Page Header ======= */}
-  <div className="page-header d-flex align-items-center">
-    <div className="container position-relative">
-      <div className="row d-flex justify-content-center">
-        <div className="col-lg-6 text-center">
-          <h5>Hãy liên hệ và phản hồi với chúng tôi</h5>
-          <a className="cta-btn" href="contact.html">
-            Available for hire
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  {/* End Page Header */}
+
   <section className="vh-100">
     <div className="container-fluid h-custom">
       <div className="row d-flex justify-content-center align-items-center h-100">

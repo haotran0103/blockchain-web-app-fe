@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react'
-/* eslint-disable @next/next/no-img-element */
+
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -29,7 +29,7 @@ export default function login() {
         <div className="col-lg-6 text-center">
           <h5>Hãy liên hệ và phản hồi với chúng tôi</h5>
           <a className="cta-btn" href="contact.html">
-            Available for hire
+          bắt đầu dự án đầu tiên
           </a>
         </div>
       </div>
