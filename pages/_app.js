@@ -1,4 +1,4 @@
-
+import '@/public/assets/vendor/aos/aos.js'
 import '@/public/assets/vendor/bootstrap/css/bootstrap.min.css'
 import '@/public/assets/vendor/bootstrap-icons/bootstrap-icons.css'
 import '@/public/assets/vendor/swiper/swiper-bundle.min.css'
