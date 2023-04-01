@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 const Header = () => {
-  const [showNav, setShowNav] = useState(false);
+  const [showNav, setShowNav] = useState(true);
 
   const toggleNav = () => {
     setShowNav(!showNav);

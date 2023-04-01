@@ -25,8 +25,7 @@ export default function create_project() {
       </div>
     </div>
   </section>
-      <section className="vh-100">
-      <div className="container-fluid h-custom">
+      <div className="container">
     <div className="row d-flex justify-content-center align-items-center">
 
       <div className="col-md-12 col-lg-4 col-xl-4 offset-xl-1">
@@ -139,7 +138,6 @@ export default function create_project() {
       </div>
     </div>
   </div>
-</section>
 
     </>
   )
