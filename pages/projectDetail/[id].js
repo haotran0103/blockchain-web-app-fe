@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -119,14 +120,15 @@ const DetailProject = ({ post }) => {
                     <strong>website</strong> <a href="#">{post.diaChiWeb}</a>
                   </li>
                   <li>
-                    <form onSubmit={handleSubmit}>
+
                       <button
-                        type="submit"
+
                         className="btn-visit align-self-start"
-                      >
+                      ><Link href={`/transaction/${post.id}`}>
                         tham gia dự án
+                        </Link>
                       </button>
-                    </form>
+
                   </li>
                 </ul>
               </div>
