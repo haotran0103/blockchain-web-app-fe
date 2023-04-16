@@ -7,13 +7,13 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 export async function getServerSideProps(context) {
   try {
-    console.log(context.query)
-
-    const {id } = context.query;
-
-    const postData = await fetch(`http://localhost:8080/apiv1/projects/${context.query}`);
-    const post = await postData.sendToken.json();
-    console.log(post)  
+    const id_old = context.query;
+    const id = id_old.joinProject;
+  
+    console.log(id)
+    const postData = await axios.get(`http://localhost:8080/apiv1/projects/${id}`);
+    console.log(postData)  
+    const post = postData.data;
     
     return {
       props: {
@@ -28,7 +28,6 @@ export async function getServerSideProps(context) {
   }
 }
 
-
   
   const conductTransaction = ({ post }) => {
     const [accountAddress, setAccountAddress] = useState("");
@@ -38,11 +37,10 @@ export async function getServerSideProps(context) {
         e.preventDefault();
         try {
             const res = await axios.post(
-                "/apiv1/transactionCtrl",
+                "http://localhost:8080/apiv1/transactionCtrl",
                 projectData
               );
               const projectData = {
-                recipientAddress: accountAddress,
                 amount: amount,
             
               }
@@ -103,7 +101,7 @@ export async function getServerSideProps(context) {
                       id="description"
                       placeholder="Địa chỉ ví muốn gửi"
                       type="text"
-                      value={accountAddress}
+                      value={post.maVi}
                       className="form-control"
                       style={{ maxWidth: "400px", margin: "auto" }}
                     />
