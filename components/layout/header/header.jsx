@@ -85,7 +85,7 @@ const Header = () => {
         <div className="header-social-links">
           {accountAddress ? (
             <>
-              <Link href="/profile">trang cá nhân</Link>
+              <Link href={`/user/${accountAddress}`}>trang cá nhân</Link>
               <Link href="/payment/order"> nạp token </Link>
             </>
           ) : (

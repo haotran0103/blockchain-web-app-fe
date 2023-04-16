@@ -116,86 +116,87 @@ export default function Home({ data }) {
         <section id="testimonials" className="testimonials">
           <div className="container">
             <div className="section-header">
-              <h2>Testimonials</h2>
-              <p>What they are saying</p>
+              <h2>những người khởi tạo</h2>
+              <p>họ nói gì</p>
             </div>
             <div className="slides-3 swiper">
               <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <div className="testimonial-item">
-                    <div className="stars">
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                    </div>
-                    <p>Hãy sài tiền theo cách của bạn</p>
-                    <div className="profile mt-auto">
-                      <img
-                        src="assets/img/testimonials/testimonials-6.jpg"
-                        className="testimonial-img"
-                        alt=""
-                      />
-                      <h3>Trần Quốc Hào</h3>
-                      <h4>Ceo &amp; Founder</h4>
-                    </div>
+                <div className="testimonial-item">
+                  <div className="stars">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                  </div>
+                  <p>
+                    Những khoảng đầu tư nên minh bạch nhất có thể để đảm bảo lợi
+                    ích của các bên
+                  </p>
+                  <div className="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-6.jpg"
+                      className="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Trần Quốc Hào</h3>
+                    <h4>Ceo &amp; Founder</h4>
+                  </div>
+                </div>
+
+                {/* End testimonial item */}
+
+                <div className="testimonial-item">
+                  <div className="stars">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                  </div>
+                  <p>
+                    Đến năm 2025, Khoa Công nghệ Thông tin - Đại học Nguyễn Tất
+                    Thành là nơi uy tín về đào tạo và cung cấp nguồn nhân lực
+                    công nghệ thông tin có trình độ và chất lượng tiên tiến
+                    trong khu vực để đáp ứng các yêu cầu về quản lý, sản xuất,
+                    dịch vụ và ứng dụng của công nghệ thông tin trong nước và
+                    quốc tế
+                  </p>
+                  <div className="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-8.jpg"
+                      className="testimonial-img"
+                      alt=""
+                    />
+                    <h3>NTTU</h3>
+                    <h4>nhà đầu tư chính</h4>
                   </div>
                 </div>
                 {/* End testimonial item */}
-                <div className="swiper-slide">
-                  <div className="testimonial-item">
-                    <div className="stars">
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                    </div>
-                    <p>
-                      Đến năm 2025, Khoa Công nghệ Thông tin - Đại học Nguyễn
-                      Tất Thành là nơi uy tín về đào tạo và cung cấp nguồn nhân
-                      lực công nghệ thông tin có trình độ và chất lượng tiên
-                      tiến trong khu vực để đáp ứng các yêu cầu về quản lý, sản
-                      xuất, dịch vụ và ứng dụng của công nghệ thông tin trong
-                      nước và quốc tế
-                    </p>
-                    <div className="profile mt-auto">
-                      <img
-                        src="assets/img/testimonials/testimonials-8.jpg"
-                        className="testimonial-img"
-                        alt=""
-                      />
-                      <h3>NTTU</h3>
-                      <h4>Designer</h4>
-                    </div>
+
+                <div className="testimonial-item">
+                  <div className="stars">
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                    <i className="bi bi-star-fill" />
+                  </div>
+                  <p>
+                    Hãy đầu ngay khi bạn có thể hoặc về già bạn chả có cái gì
+                    hết ngoài bộ xương
+                  </p>
+                  <div className="profile mt-auto">
+                    <img
+                      src="assets/img/testimonials/testimonials-7.jpg"
+                      className="testimonial-img"
+                      alt=""
+                    />
+                    <h3>Hoài Fong</h3>
+                    <h4>Designer</h4>
                   </div>
                 </div>
-                {/* End testimonial item */}
-                <div className="swiper-slide">
-                  <div className="testimonial-item">
-                    <div className="stars">
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                      <i className="bi bi-star-fill" />
-                    </div>
-                    <p>
-                      Hãy đầu ngay khi bạn có thể hoặc về già bạn chả có cái gì
-                      hết ngoài bộ xương
-                    </p>
-                    <div className="profile mt-auto">
-                      <img
-                        src="assets/img/testimonials/testimonials-7.jpg"
-                        className="testimonial-img"
-                        alt=""
-                      />
-                      <h3>Hoài Fong</h3>
-                      <h4>Designer</h4>
-                    </div>
-                  </div>
-                </div>
+
                 {/* End testimonial item */}
               </div>
               <div className="swiper-pagination" />

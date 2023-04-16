@@ -2,10 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
+import { format } from "date-fns";
 export async function getServerSideProps(context) {
   const { id } = context.query;
+  console.log(id);
   const postData = await fetch(`http://localhost:8080/apiv1/projects/${id}`);
   const post = await postData.json();
+
   return {
     props: {
       post,
@@ -86,7 +89,7 @@ const DetailProject = ({ post }) => {
           <div className="row justify-content-between gy-4 mt-4">
             <div className="col-lg-8">
               <div className="portfolio-description">
-                <h2>1 lần nửa tên dự án</h2>
+                <h2>{post.tenProject}</h2>
                 <p>Mô tả: {post.moTa}</p>
                 <div className="testimonial-item">
                   <p>
@@ -111,24 +114,21 @@ const DetailProject = ({ post }) => {
                 <h3>Project information</h3>
                 <ul>
                   <li>
-                    <strong>loại dự án</strong> <span>Nature Photography</span>
+                    <strong>loại dự án</strong> <span>{post.tenLoai}</span>
                   </li>
                   <li>
-                    <strong>ngày tạo</strong> <span>{post.ngayTao}</span>
+                    <strong>ngày tạo</strong>{" "}
+                    <span>{format(new Date(post.ngayTao), "dd/MM/yyyy")}</span>
                   </li>
                   <li>
                     <strong>website</strong> <a href="#">{post.diaChiWeb}</a>
                   </li>
                   <li>
-
-                      <button
-
-                        className="btn-visit align-self-start"
-                      ><Link href={`/transaction/${post.id}`}>
+                    <button className="btn-visit align-self-start">
+                      <Link href={`/transaction/${post.id}`}>
                         tham gia dự án
-                        </Link>
-                      </button>
-
+                      </Link>
+                    </button>
                   </li>
                 </ul>
               </div>

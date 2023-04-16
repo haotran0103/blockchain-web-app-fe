@@ -4,7 +4,36 @@ import Link from "next/link";
 export default function Login() {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState("");
+  const [accountAddress, setAccountAddress] = useState("");
+  const getAccountAddress = async () => {
+    if (typeof window !== "object") {
+      // xử lý lỗi hoặc thực hiện các hành động khác
+      return;
+    }
 
+    const web3 = new Web3(window.ethereum);
+    const accounts = await web3.eth.getAccounts();
+    if (accounts.length > 0) {
+      setAccountAddress(accounts[0]);
+    }
+  };
+  useEffect(() => {
+    async function getAccountAddress() {
+      if (window.ethereum) {
+        const web3 = new Web3(window.ethereum);
+        try {
+          // Request account access if needed
+          await window.ethereum.enable();
+          // Get first account address
+          const accounts = await web3.eth.getAccounts();
+          setAccountAddress(accounts[0]);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+    getAccountAddress();
+  }, []);
   useEffect(() => {
     const getWeb3 = async () => {
       // Modern dapp browsers
@@ -14,7 +43,9 @@ export default function Login() {
           // Request account access
           await window.ethereum.enable();
           setWeb3(web3);
-          window.location.href = '/';
+          getAccountAddress();
+          await fetch(`http://localhost:8080/apiv1/register/${accountAddress}`);
+          window.location.href = "/";
         } catch (error) {
           // User denied account access
           console.error(error);
@@ -27,9 +58,7 @@ export default function Login() {
       }
       // Non-dapp browsers
       else {
-        alert(
-          "Please install MetaMask to use this website"
-        );
+        alert("Please install MetaMask to use this website");
       }
     };
     getWeb3();
@@ -50,7 +79,7 @@ export default function Login() {
     if (web3) {
       try {
         // Request account access
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        await window.ethereum.request({ method: "eth_requestAccounts" });
         handleAuth();
       } catch (error) {
         // User denied account access
@@ -67,7 +96,7 @@ export default function Login() {
             <div className="col-lg-6 text-center">
               <p>Login to get started</p>
               <button type="sumit">
-              <Link href='/Login'>Login with Metamask</Link>
+                <Link href="/Login">Login with Metamask</Link>
               </button>
             </div>
           </div>
