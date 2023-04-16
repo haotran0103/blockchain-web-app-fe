@@ -4,16 +4,30 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 export async function getServerSideProps(context) {
-  const { id } = context.query;
-  console.log(id);
-  const postData = await fetch(`http://localhost:8080/apiv1/projects/${id}`);
-  const post = await postData.json();
-  return {
-    props: {
-      post,
-    },
-  };
+  try {
+    const id_old = context.query;
+    const id = id_old.joinProject;
+
+    console.log(id);
+    const postData = await axios.get(
+      `http://localhost:8080/apiv1/projects/${id}`
+    );
+    console.log(postData);
+    const post = postData.data;
+
+    return {
+      props: {
+        post,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching post data:", error);
+    return {
+      props: {},
+    };
+  }
 }
+
 const conductTransaction = ({ post }) => {
   const [accountAddress, setAccountAddress] = useState("");
   const [amount, setamount] = useState("");
@@ -26,7 +40,6 @@ const conductTransaction = ({ post }) => {
         projectData
       );
       const projectData = {
-        recipientAddress: accountAddress,
         amount: amount,
       };
       const data = await res.json();
@@ -65,6 +78,46 @@ const conductTransaction = ({ post }) => {
           </div>
         </div>
       </section>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6 offset-lg-3">
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  id="amount"
+                  placeholder="Nhập vào số lượng token muốn chuyển"
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setamount(e.target.value)}
+                  className="form-control"
+                  style={{ maxWidth: "400px", margin: "auto" }}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description"></label>
+                <input
+                  id="description"
+                  placeholder="Địa chỉ ví muốn gửi"
+                  type="text"
+                  value={post.maVi}
+                  className="form-control"
+                  style={{ maxWidth: "400px", margin: "auto" }}
+                />
+              </div>
+              <div className="form-group text-center">
+                <label htmlFor="submita"></label>
+                <button
+                  style={{ marginTop: 10 }}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  Gửi
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="row">
           <div className="col-lg-6 offset-lg-3">
