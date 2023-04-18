@@ -1,10 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
+import LoadingOverlay from "react-loading-overlay";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import Web3 from "web3";
+import React, { useEffect, useState } from "react";
+import { ethers } from "ethers";
+
+
+
 export async function getServerSideProps(context) {
   try {
     const id_old = context.query;
@@ -32,13 +37,14 @@ const conductTransaction = ({ post }) => {
   const [accountAddress, setAccountAddress] = useState("");
   const [amount, setamount] = useState(0);
   const [noiDung, setnoiDung] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function getAccountAddress() {
       if (window.ethereum) {
         const web3 = new Web3(window.ethereum);
         try {
           // Request account access if needed
-          await window.ethereum.enable();
+          await window.window.ethereum.send("eth_requestAccounts")
           // Get first account address
           const accounts = await web3.eth.getAccounts();
           setAccountAddress(accounts[0]);
@@ -50,6 +56,7 @@ const conductTransaction = ({ post }) => {
     getAccountAddress();
   }, []);
   const handleSubmit = async (e) => {
+    // setLoading(true);
     e.preventDefault();
     try {
       const projectData = {
@@ -62,15 +69,76 @@ const conductTransaction = ({ post }) => {
         "http://localhost:8080/apiv1/transactionCtrl",
         projectData
       );
+      // setLoading(false);
       const data = await res.json();
       window.location.href = data.successUrl; // redirect to payment gateway URL
     } catch (error) {
       console.error(error);
     }
+    try {
+
+      if (!window.ethereum) {
+        throw  new  Error("No crypto wallet found. Please install it.");
+      }
+    
+        await  window.ethereum.send("eth_requestAccounts");
+    
+        const  provider = new  ethers.providers.Web3Provider(window.ethereum);
+    
+        const  signer = provider.getSigner();
+    
+        ethers.utils.getAddress(toAddress);
+    
+        const  transactionResponse = await  signer.sendTransaction({
+    
+          to:  toAddress,
+    
+          value:  ethers.utils.parseEther(amount.toString())
+    
+        });
+    
+        console.log({transactionResponse});
+    
+      } catch (error) {
+    
+        console.log({error});
+    
+      }
+
+      try {
+
+        if (!window.ethereum) {
+          throw  new  Error("No crypto wallet found. Please install it.");
+        }
+      
+          await  window.ethereum.send("eth_requestAccounts");
+      
+          const  provider = new  ethers.providers.Web3Provider(window.ethereum);
+      
+          const  signer = provider.getSigner();
+      
+          ethers.utils.getAddress(accountAddress);
+      
+          const  transactionResponse = await  signer.sendTransaction({
+      
+            to:  accountAddress,
+      
+            value:  ethers.utils.parseEther(amount.toString())
+      
+          });
+      
+          console.log({transactionResponse});
+      
+        } catch (error) {
+      
+          console.log({error});
+      
+        }
   };
 
   return (
     <>
+    <LoadingOverlay active={loading} spinner text="Đang thực hiện tác vụ...">
       <section
         id="hero"
         className="hero d-flex flex-column justify-content-center align-items-center"
@@ -124,6 +192,7 @@ const conductTransaction = ({ post }) => {
           </div>
         </div>
       </div>
+      </LoadingOverlay>
     </>
   );
 };
