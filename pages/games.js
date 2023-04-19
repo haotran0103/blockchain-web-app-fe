@@ -54,10 +54,15 @@ export default function games({ post }) {
               <div className="col-lg-6 text-center">
                 <h2>Games</h2>
                 <p>
-                  Odio et unde deleniti. Deserunt numquam exercitationem.
-                  Officiis quo odio sint voluptas consequatur ut a odio
-                  voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi
-                  ratione sint. Sit quaerat ipsum dolorem.
+                  Game là một chủ đề nổi bật trong thế giới giải trí hiện nay.
+                  Game được coi là một hình thức giải trí tuyệt vời, có thể kết
+                  hợp giữa âm nhạc, đồ họa, nội dung và thao tác, để tạo ra
+                  những trải nghiệm mới mẻ và thú vị cho người chơi. Những trò
+                  chơi này có thể dành cho mọi lứa tuổi, với nhiều thể loại khác
+                  nhau, bao gồm game đối kháng, game phiêu lưu, game giải đố,
+                  game thể thao, v.v. Ngoài giải trí, game còn có thể giúp người
+                  chơi rèn luyện kỹ năng tư duy, tăng cường trí tuệ và khả năng
+                  tập trung.
                 </p>
                 <Link className="cta-btn" href="/create-project">
                   bắt đầu dự án đầu tiên
@@ -69,8 +74,13 @@ export default function games({ post }) {
         {/* End Page Header */}
         <div className="container">
           <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-              <img src={post[0].anhBia} className="img-fluid" alt="" />
+            <div className="col-lg-6">
+              <img
+                src={post[0].anhBia}
+                className="img-fluid"
+                alt=""
+                style={{ width: 407, height: 432, objectFit: "cover" }}
+              />
             </div>
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
@@ -131,6 +141,11 @@ export default function games({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>

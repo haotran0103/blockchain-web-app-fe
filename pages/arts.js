@@ -18,7 +18,12 @@ export default function arts({ post }) {
     galleryItems.push(
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
-          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
+          <img
+            src={item.anhBia}
+            className="img-fluid"
+            alt={item.title}
+            style={{ width: 407, height: 432, objectFit: "cover" }}
+          />
           <div className="gallery-links d-flex align-items-center justify-content-center">
             <a
               href={item.imageSrc}
@@ -52,12 +57,16 @@ export default function arts({ post }) {
           <div className="container position-relative">
             <div className="row d-flex justify-content-center">
               <div className="col-lg-6 text-center">
-                <h2>Arts</h2>
+                <h2>Nghệ thuật</h2>
                 <p>
-                  Odio et unde deleniti. Deserunt numquam exercitationem.
-                  Officiis quo odio sint voluptas consequatur ut a odio
-                  voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi
-                  ratione sint. Sit quaerat ipsum dolorem.
+                  Đề tài nghệ thuật là một chủ đề mà người ta thường khám phá và
+                  sáng tạo để tạo ra các tác phẩm có tính thẩm mỹ cao, bao gồm
+                  nhiều lĩnh vực như hội họa, điêu khắc, âm nhạc, vũ đạo và
+                  nhiếp ảnh. Nó có thể phản ánh tâm trạng, suy nghĩ, tư duy, hay
+                  đơn giản là thể hiện sự đam mê và khát khao của người sáng
+                  tác. Từ những tác phẩm nghệ thuật đa dạng này, ta có thể cảm
+                  nhận được sự đa dạng và sáng tạo của con người trong việc thể
+                  hiện nghệ thuật.
                 </p>
                 <Link className="cta-btn" href="/create-project">
                   bắt đầu dự án đầu tiên
@@ -69,8 +78,13 @@ export default function arts({ post }) {
         {/* End Page Header */}
         <div className="container">
           <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-              <img src={post[0].anhBia} className="img-fluid" alt="" />
+            <div className="col-lg-6">
+              <img
+                src={post[0].anhBia}
+                className="img-fluid"
+                alt=""
+                style={{ width: 407, height: 432, objectFit: "cover" }}
+              />
             </div>
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
@@ -131,6 +145,11 @@ export default function arts({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>

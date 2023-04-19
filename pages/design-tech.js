@@ -18,17 +18,24 @@ export default function desigh_tech({ post }) {
     galleryItems.push(
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
-          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
+          <img src={item.anhBia} className="img-fluid" alt={item.title} />
           <div className="gallery-links d-flex align-items-center justify-content-center">
             <a
               href={item.imageSrc}
               title={item.title}
               className="glightbox preview-link"
             />
-            <a href={item.detailsUrl} className="details-link">
+            <Link href={`/projectDetail/${item.id}`} className="details-link">
               <i className="bi bi-link-45deg" />
-            </a>
-            <button>Join</button>
+            </Link>
+            <button>
+              <Link
+                style={{ color: "#858d8a" }}
+                href={`/transaction/${item.id}`}
+              >
+                join
+              </Link>
+            </button>
           </div>
           <div className="user_information">
             <progress
@@ -74,7 +81,7 @@ export default function desigh_tech({ post }) {
                 src={post[0].anhBia}
                 className="img-fluid"
                 alt=""
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: 407, height: 432, objectFit: "cover" }}
               />
             </div>
             <div className="col-lg-5 content">
@@ -136,6 +143,11 @@ export default function desigh_tech({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>

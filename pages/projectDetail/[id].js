@@ -125,7 +125,10 @@ const DetailProject = ({ post }) => {
                   </li>
                   <li>
                     <button className="btn-visit align-self-start">
-                      <Link href={`/transaction/${post.id}`}>
+                      <Link
+                        style={{ color: "#ada9a9" }}
+                        href={`/transaction/${post.id}`}
+                      >
                         tham gia dự án
                       </Link>
                     </button>

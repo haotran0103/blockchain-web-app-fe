@@ -8,8 +8,6 @@ import Web3 from "web3";
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 
-
-
 export async function getServerSideProps(context) {
   try {
     const id_old = context.query;
@@ -44,7 +42,7 @@ const conductTransaction = ({ post }) => {
         const web3 = new Web3(window.ethereum);
         try {
           // Request account access if needed
-          await window.window.ethereum.send("eth_requestAccounts")
+          await window.window.ethereum.send("eth_requestAccounts");
           // Get first account address
           const accounts = await web3.eth.getAccounts();
           setAccountAddress(accounts[0]);
@@ -55,13 +53,11 @@ const conductTransaction = ({ post }) => {
     }
     getAccountAddress();
   }, []);
-  const handleSubmit = async (e) => {
-    // setLoading(true);
-    e.preventDefault();
+  async function saveGiaoDich(amount, id, accountAddress) {
     try {
       const projectData = {
         amount: amount,
-        toAddress: post.maVi,
+        projectID: id,
         fromAddress: accountAddress,
       };
       console.log(projectData);
@@ -71,69 +67,41 @@ const conductTransaction = ({ post }) => {
       );
       // setLoading(false);
       const data = await res.json();
-      window.location.href = data.successUrl; // redirect to payment gateway URL
+      console.log(data);
+      window.location.href = `/user/${accountAddress}`; // redirect to payment gateway URL
     } catch (error) {
       console.error(error);
     }
-    try {
-
-      if (!window.ethereum) {
-        throw  new  Error("No crypto wallet found. Please install it.");
-      }
-
-        await  window.ethereum.send("eth_requestAccounts");
-
-        const  provider = new  ethers.providers.Web3Provider(window.ethereum);
-
-        const  signer = provider.getSigner();
-
-      ethers.utils.getAddress(toAddress);
-
-        const  transactionResponse = await  signer.sendTransaction({
-
-          to:  toAddress,
-    
-          value:  ethers.utils.parseEther(amount.toString())
-    
-      });
-
-        console.log({transactionResponse});
-    
-    } catch (error) {
-    
-        console.log({error});
-    
-    }
+  }
+  const handleSubmit = async (e) => {
+    // setLoading(true);
+    e.preventDefault();
 
     try {
-
       if (!window.ethereum) {
-          throw  new  Error("No crypto wallet found. Please install it.");
+        throw new Error("No crypto wallet found. Please install it.");
       }
 
-          await  window.ethereum.send("eth_requestAccounts");
+      await window.ethereum.send("eth_requestAccounts");
 
-          const  provider = new  ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-          const  signer = provider.getSigner();
+      const signer = provider.getSigner();
 
-      ethers.utils.getAddress(accountAddress);
+      ethers.utils.getAddress(post.maVi);
 
-          const  transactionResponse = await  signer.sendTransaction({
+      const transactionResponse = await signer.sendTransaction({
+        to: post.maVi,
 
-            to:  accountAddress,
-      
-            value:  ethers.utils.parseEther(amount.toString())
-      
+        value: ethers.utils.parseEther(amount.toString()),
       });
 
-          console.log({transactionResponse});
-      
+      console.log({ transactionResponse });
     } catch (error) {
-      
-          console.log({error});
-      
+      console.log({ error });
     }
+    console.log(accountAddress);
+    saveGiaoDich(amount, post.id, accountAddress);
   };
 
   return (
@@ -174,7 +142,7 @@ const conductTransaction = ({ post }) => {
                     id="description"
                     placeholder="Địa chỉ ví muốn gửi"
                     type="text"
-                    value={accountAddress}
+                    value={post.maVi}
                     className="form-control"
                     style={{ maxWidth: "400px", margin: "auto" }}
                   />

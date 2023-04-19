@@ -21,12 +21,17 @@ export default function comics_and_illustration({ post }) {
           <div className="container position-relative">
             <div className="row d-flex justify-content-center">
               <div className="col-lg-6 text-center">
-                <h2>Comics & Illustration</h2>
+                <h2>Truyện và truyện tranh</h2>
                 <p>
-                  Odio et unde deleniti. Deserunt numquam exercitationem.
-                  Officiis quo odio sint voluptas consequatur ut a odio
-                  voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi
-                  ratione sint. Sit quaerat ipsum dolorem.
+                  Truyện và truyện tranh là những chủ đề thú vị về nghệ thuật và
+                  văn hóa, có sức hấp dẫn đối với nhiều độc giả trên khắp thế
+                  giới. Truyện và truyện tranh là những hình thức văn học thịnh
+                  hành, có thể kể chuyện, phản ánh tâm lý con người và thể hiện
+                  nhiều giá trị văn hóa khác nhau. Trong truyện tranh, hình ảnh
+                  được sử dụng để kể chuyện, tạo ra những tác phẩm độc đáo với
+                  phong cách nghệ thuật riêng biệt. Từ những truyện và truyện
+                  tranh đa dạng này, người đọc có thể tìm thấy niềm vui và sự
+                  giải trí,
                 </p>
                 <Link className="cta-btn" href="/create-project">
                   bắt đầu dự án đầu tiên
@@ -38,8 +43,13 @@ export default function comics_and_illustration({ post }) {
         {/* End Page Header */}
         <div className="container">
           <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-              <img src={post[0].anhBia} className="img-fluid" alt="" />
+            <div className="col-lg-6">
+              <img
+                src={post[0].anhBia}
+                className="img-fluid"
+                alt=""
+                style={{ width: 407, height: 432, objectFit: "cover" }}
+              />
             </div>
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
@@ -100,6 +110,11 @@ export default function comics_and_illustration({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>

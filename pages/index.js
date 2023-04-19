@@ -45,7 +45,7 @@ export default function Home({ data }) {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6 text-center">
-              <h2>
+              <h2 style={{fontFamily:'auto'}}>
                 Chúng tôi là
                 <hao style={{ color: "#e3b11e ", padding: "6px" }}>
                   Cryptic Titan
@@ -97,8 +97,14 @@ export default function Home({ data }) {
                         >
                           <i className="bi bi-link-45deg" />
                         </Link>
-
-                        <button>Join</button>
+                        <button>
+                          <Link
+                            style={{ color: "#858d8a" }}
+                            href={`/transaction/${category.id}`}
+                          >
+                            join
+                          </Link>
+                        </button>
                       </div>
                       <div className="user_information">
                         <progress className="my_progress" value={0} max={100} />

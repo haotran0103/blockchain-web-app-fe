@@ -141,7 +141,7 @@ h6 {
   font-size: 56px;
   font-weight: 500;
   color: #fff;
-  font-family: var(--font-secondary);
+  font-family: auto;
 }
 
 @media (max-width: 768px) {
@@ -155,7 +155,7 @@ h6 {
 }
 
 .page-header .cta-btn {
-  font-family: var(--font-primary);
+  font-family: auto;
   font-weight: 400;
   font-size: 14px;
   display: inline-block;
@@ -165,11 +165,11 @@ h6 {
   text-transform: uppercase;
   transition: 0.3s;
   color: #fff;
-  background: var(--color-primary);
+  background: #e7be38;
 }
 
 .page-header .cta-btn:hover {
-  background: #2cbc85;
+  background: #dba30a;
 }
 
 /*--------------------------------------------------------------
@@ -896,14 +896,14 @@ h6 {
 
 .gallery-single .portfolio-info .btn-visit {
   padding: 8px 40px;
-  background: var(--color-primary);
-  color: #fff;
+  background: #f8c10a;
+  color: #ada9a9;
   border-radius: 50px;
   transition: 0.3s;
 }
 
 .gallery-single .portfolio-info .btn-visit:hover {
-  background: #2cbc85;
+  background: #e7be38;
 }
 
 .gallery-single .portfolio-description h2 {

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 export default function Login() {
+  const router = useRouter();
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState("");
   const [accountAddress, setAccountAddress] = useState("");
@@ -15,6 +18,7 @@ export default function Login() {
     const accounts = await web3.eth.getAccounts();
     if (accounts.length > 0) {
       setAccountAddress(accounts[0]);
+      router.push("/");
     }
   };
   useEffect(() => {
@@ -26,7 +30,6 @@ export default function Login() {
           await window.ethereum.enable();
           // Get first account address
           const accounts = await web3.eth.getAccounts();
-          setAccountAddress(accounts[0]);
         } catch (error) {
           console.error(error);
         }
@@ -45,7 +48,6 @@ export default function Login() {
           setWeb3(web3);
           getAccountAddress();
           await fetch(`http://localhost:8080/apiv1/register/${accountAddress}`);
-          window.location.href = "/";
         } catch (error) {
           // User denied account access
           console.error(error);
@@ -69,6 +71,7 @@ export default function Login() {
       const accounts = await web3.eth.getAccounts();
       if (accounts.length > 0) {
         setAccount(accounts[0]);
+        window.location.href = "/";
         // Authenticate the user with the backend using the account address
         // e.g. call an API endpoint with the address as a parameter
       }

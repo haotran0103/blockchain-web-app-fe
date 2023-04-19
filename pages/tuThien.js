@@ -69,8 +69,13 @@ export default function comics_and_illustration({ post }) {
         {/* End Page Header */}
         <div className="container">
           <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-              <img src={post[0].anhBia} className="img-fluid" alt="" />
+            <div className="col-lg-6">
+              <img
+                src={post[0].anhBia}
+                className="img-fluid"
+                alt=""
+                style={{ width: 407, height: 432, objectFit: "cover" }}
+              />
             </div>
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
@@ -131,6 +136,11 @@ export default function comics_and_illustration({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>

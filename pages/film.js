@@ -18,7 +18,12 @@ export default function film({ post }) {
     galleryItems.push(
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
-          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
+          <img
+            src={item.imageSrc}
+            className="img-fluid"
+            alt={item.title}
+            style={{ width: 407, height: 432, objectFit: "cover" }}
+          />
           <div className="gallery-links d-flex align-items-center justify-content-center">
             <a
               href={item.imageSrc}
@@ -69,8 +74,13 @@ export default function film({ post }) {
         {/* End Page Header */}
         <div className="container">
           <div className="row gy-4 justify-content-center">
-            <div className="col-lg-4">
-              <img src={post[0].anhBia} className="img-fluid" alt="" />
+            <div className="col-lg-6">
+              <img
+                src={post[0].anhBia}
+                className="img-fluid"
+                alt=""
+                style={{ width: 407, height: 432, objectFit: "cover" }}
+              />
             </div>
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
@@ -131,6 +141,11 @@ export default function film({ post }) {
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
               {post[0].moTa}
+              <p />
+              <p className="py-3"></p>
+              <Link href={`/projectDetail/${post[0].id}`}>
+                <h5>xem chi tiết</h5>
+              </Link>
               <p />
             </div>
           </div>
