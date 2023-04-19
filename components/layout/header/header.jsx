@@ -26,33 +26,36 @@ const Header = () => {
   getAccountAddress();
 
   return (
-    <header id="header" className="header d-flex align-items-center fixed-top">
+    <header
+      id="header"
+      className="header d-flex align-items-center fixed-top"
+      style={{ maxHeight: "50px", paddingTop: "50px" }}
+    >
       <div className="container-fluid d-flex align-items-center justify-content-between">
-        <Link
-          href="/"
-          className="logo d-flex align-items-center me-auto me-lg-0"
-        >
-          <i className="bi bi-camera"></i>
-          <h1>Cryptic Titan</h1>
-        </Link>
+        <div className="logo-header">
+          <Link href="/" style={{ paddingRight: "50px" }}>
+            <img src="assets/img/logo2.png" alt="logo" />
+          </Link>
+        </div>
         <nav id="navbar" className="navbar">
           <ul>
             <li>
-              <Link href="/arts">Arts</Link>
+              <Link href="/arts">Nghệ thuật</Link>
             </li>
             <li>
-              <Link href="/comics-and-illustration">
-                Comics &amp; Illustration
-              </Link>
+              <Link href="/comics-and-illustration">Truyện & truyện Tranh</Link>
             </li>
             <li>
-              <Link href="/design-tech">Design &amp; Tech</Link>
+              <Link href="/design-tech">Thiết kế và công nghệ</Link>
             </li>
             <li>
-              <Link href="/film">Film</Link>
+              <Link href="/film">Phim</Link>
             </li>
             <li>
               <Link href="/games">Games</Link>
+            </li>
+            <li>
+              <Link href="/tuThien">Từ thiện</Link>
             </li>
           </ul>
         </nav>
@@ -93,12 +96,6 @@ const Header = () => {
               <Link href="/login">Đăng nhập</Link>
             </>
           )}
-          <a href="#" className="twitter">
-            <i className="bi bi-twitter" />
-          </a>
-          <a href="#" className="facebook">
-            <i className="bi bi-facebook" />
-          </a>
         </div>
         {showMenuMobie && (
           <>

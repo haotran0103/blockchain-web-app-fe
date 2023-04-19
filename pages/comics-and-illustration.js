@@ -1,42 +1,21 @@
 import Link from "next/link";
 import React from "react";
-
-export default function comics_and_illustration() {
-  const galleryItems = [];
-  for (let i = 1; i < post.length; i++) {
-    const item = post[i];
-    galleryItems.push(
-      <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
-        <div className="gallery-item h-100">
-          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
-          <div className="gallery-links d-flex align-items-center justify-content-center">
-            <a
-              href={item.imageSrc}
-              title={item.title}
-              className="glightbox preview-link"
-            />
-            <a href={item.detailsUrl} className="details-link">
-              <i className="bi bi-link-45deg" />
-            </a>
-            <button>Join</button>
-          </div>
-          <div className="user_information">
-            <progress
-              className="my_progress"
-              value={item.fundProgress}
-              max={100}
-            />
-            <p>Thông tin người gọi vốn: {item.callerInfo}</p>
-            <p>Số người đã ủng hộ: {item.supportersCount}</p>
-            <p>Thời gian còn lại: {item.remainingTime}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <>
-      <main id="main" data-aos="fade" data-aos-delay={1500}>
+import { format } from "date-fns";
+import moment from "moment";
+export async function getServerSideProps() {
+  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/2`);
+  const post = await postData.json();
+  return {
+    props: {
+      post,
+    },
+  };
+}
+export default function comics_and_illustration({ post }) {
+  const projectArr = [];
+  if (post[0]) {
+    projectArr.push(
+      <>
         {/* ======= End Page Header ======= */}
         <div className="page-header d-flex align-items-center">
           <div className="container position-relative">
@@ -112,7 +91,7 @@ export default function comics_and_illustration() {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
-                      <strong>chức bụ trong dự án:</strong>{" "}
+                      <strong>chức vụ trong dự án:</strong>{" "}
                       <span>{post[0].chucVu}</span>
                     </li>
                   </ul>
@@ -125,22 +104,68 @@ export default function comics_and_illustration() {
             </div>
           </div>
         </div>
-        {/* End About Section */}
-        {/* ======= Gallery Section ======= */}
-        <section id="gallery" className="gallery">
-          <div className="section-header">
-            <h2>Comics &amp; Illustration</h2>
-            <p>Tiêu biểu khác</p>
-          </div>
-          <div className="container-fluid">
-            <div className="row gy-4 justify-content-center">
-              {galleryItems}
-              {/* End Gallery Item */}
+      </>
+    );
+  } else {
+    projectArr.push(
+      <div className="page-header d-flex align-items-center">
+        <div className="container position-relative">
+          <div className="row d-flex justify-content-center">
+            <div className="col-lg-6 text-center">
+              <h4>Hiện tại chủ đề này không có bất cứ dự án nào</h4>
             </div>
           </div>
-        </section>
-        {/* End Gallery Section */}
-      </main>
-    </>
+        </div>
+      </div>
+    );
+  }
+  const galleryItems = [];
+  for (let i = 1; i < post.length; i++) {
+    const item = post[i];
+    galleryItems.push(
+      <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
+        <div className="gallery-item h-100">
+          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
+          <div className="gallery-links d-flex align-items-center justify-content-center">
+            <a
+              href={item.imageSrc}
+              title={item.title}
+              className="glightbox preview-link"
+            />
+            <a href={item.detailsUrl} className="details-link">
+              <i className="bi bi-link-45deg" />
+            </a>
+            <button>Join</button>
+          </div>
+          <div className="user_information">
+            <progress
+              className="my_progress"
+              value={item.fundProgress}
+              max={100}
+            />
+            <p>Thông tin người gọi vốn: {item.callerInfo}</p>
+            <p>Số người đã ủng hộ: {item.supportersCount}</p>
+            <p>Thời gian còn lại: {item.remainingTime}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <main id="main" data-aos="fade" data-aos-delay={1500}>
+      {projectArr}
+      <section id="gallery" className="gallery">
+        <div className="section-header">
+          <h2>Comics &amp; Illustration</h2>
+          <p>Tiêu biểu khác</p>
+        </div>
+        <div className="container-fluid">
+          <div className="row gy-4 justify-content-center">
+            {galleryItems}
+            {/* End Gallery Item */}
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

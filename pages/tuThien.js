@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 import { format } from "date-fns";
 export async function getServerSideProps() {
-  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/4`);
+  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/6`);
   const post = await postData.json();
   return {
     props: {
@@ -11,7 +11,7 @@ export async function getServerSideProps() {
     },
   };
 }
-export default function film({ post }) {
+export default function comics_and_illustration({ post }) {
   const galleryItems = [];
   for (let i = 1; i < post.length; i++) {
     const item = post[i];
@@ -52,7 +52,7 @@ export default function film({ post }) {
           <div className="container position-relative">
             <div className="row d-flex justify-content-center">
               <div className="col-lg-6 text-center">
-                <h2>Film</h2>
+                <h2>Comics & Illustration</h2>
                 <p>
                   Odio et unde deleniti. Deserunt numquam exercitationem.
                   Officiis quo odio sint voluptas consequatur ut a odio
@@ -135,12 +135,11 @@ export default function film({ post }) {
             </div>
           </div>
         </div>
-
         {/* End About Section */}
         {/* ======= Gallery Section ======= */}
         <section id="gallery" className="gallery">
           <div className="section-header">
-            <h2>Film</h2>
+            <h2>Comics &amp; Illustration</h2>
             <p>Tiêu biểu khác</p>
           </div>
           <div className="container-fluid">

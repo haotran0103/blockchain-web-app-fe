@@ -1,6 +1,17 @@
 import React from "react";
 import Link from "next/link";
-export default function games() {
+import moment from "moment";
+import { format } from "date-fns";
+export async function getServerSideProps() {
+  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/5`);
+  const post = await postData.json();
+  return {
+    props: {
+      post,
+    },
+  };
+}
+export default function games({ post }) {
   const galleryItems = [];
   for (let i = 1; i < post.length; i++) {
     const item = post[i];
@@ -111,7 +122,7 @@ export default function games() {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
-                      <strong>chức bụ trong dự án:</strong>{" "}
+                      <strong>chức vụ trong dự án:</strong>{" "}
                       <span>{post[0].chucVu}</span>
                     </li>
                   </ul>

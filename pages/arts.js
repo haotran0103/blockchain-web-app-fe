@@ -1,7 +1,17 @@
 import Link from "next/link";
 import React from "react";
-
-export default function arts() {
+import { format } from "date-fns";
+import moment from "moment";
+export async function getServerSideProps() {
+  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/1`);
+  const post = await postData.json();
+  return {
+    props: {
+      post,
+    },
+  };
+}
+export default function arts({ post }) {
   const galleryItems = [];
   for (let i = 1; i < post.length; i++) {
     const item = post[i];
@@ -112,7 +122,7 @@ export default function arts() {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
-                      <strong>chức bụ trong dự án:</strong>{" "}
+                      <strong>chức vụ trong dự án:</strong>{" "}
                       <span>{post[0].chucVu}</span>
                     </li>
                   </ul>

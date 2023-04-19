@@ -46,8 +46,11 @@ export default function Home({ data }) {
           <div className="row justify-content-center">
             <div className="col-lg-6 text-center">
               <h2>
-                Chúng tôi là<span>Cryptic Titan</span>, nơi khởi nguồn của các
-                nhà đầu tư triệu đô
+                Chúng tôi là
+                <hao style={{ color: "#e3b11e ", padding: "6px" }}>
+                  Cryptic Titan
+                </hao>
+                nơi khởi nguồn của các nhà đầu tư triệu đô
               </h2>
               <p>
                 Đầu tư theo cách bạn muốn, hãy đầu tư vào các dự án khởi nghiệp
@@ -76,7 +79,12 @@ export default function Home({ data }) {
                 data.map((category) => (
                   <div className="col-xl-4 col-lg-4 col-md-6" key={category.id}>
                     <div className="gallery-item h-100">
-                      <img src={category.anhBia} className="img-fluid" alt="" />
+                      <img
+                        src={category.anhBia}
+                        className="img-fluid"
+                        alt=""
+                        style={{ width: 407, height: 432, objectFit: "cover" }}
+                      />
                       <div className="gallery-links d-flex align-items-center justify-content-center">
                         <a
                           href={category.anhBia}
