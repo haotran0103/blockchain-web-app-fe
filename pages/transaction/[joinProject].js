@@ -80,118 +80,118 @@ const conductTransaction = ({ post }) => {
       if (!window.ethereum) {
         throw  new  Error("No crypto wallet found. Please install it.");
       }
-    
+
         await  window.ethereum.send("eth_requestAccounts");
-    
+
         const  provider = new  ethers.providers.Web3Provider(window.ethereum);
-    
+
         const  signer = provider.getSigner();
-    
-        ethers.utils.getAddress(toAddress);
-    
+
+      ethers.utils.getAddress(toAddress);
+
         const  transactionResponse = await  signer.sendTransaction({
-    
+
           to:  toAddress,
     
           value:  ethers.utils.parseEther(amount.toString())
     
-        });
-    
+      });
+
         console.log({transactionResponse});
     
-      } catch (error) {
+    } catch (error) {
     
         console.log({error});
     
+    }
+
+    try {
+
+      if (!window.ethereum) {
+          throw  new  Error("No crypto wallet found. Please install it.");
       }
 
-      try {
-
-        if (!window.ethereum) {
-          throw  new  Error("No crypto wallet found. Please install it.");
-        }
-      
           await  window.ethereum.send("eth_requestAccounts");
-      
+
           const  provider = new  ethers.providers.Web3Provider(window.ethereum);
-      
+
           const  signer = provider.getSigner();
-      
-          ethers.utils.getAddress(accountAddress);
-      
+
+      ethers.utils.getAddress(accountAddress);
+
           const  transactionResponse = await  signer.sendTransaction({
-      
+
             to:  accountAddress,
       
             value:  ethers.utils.parseEther(amount.toString())
       
-          });
-      
+      });
+
           console.log({transactionResponse});
       
-        } catch (error) {
+    } catch (error) {
       
           console.log({error});
       
-        }
+    }
   };
 
   return (
     <>
-    <LoadingOverlay active={loading} spinner text="Đang thực hiện tác vụ...">
-      <section
-        id="hero"
-        className="hero d-flex flex-column justify-content-center align-items-center"
-        data-aos="fade"
-        data-aos-delay={1500}
-      >
+      <LoadingOverlay active={loading} spinner text="Đang thực hiện tác vụ...">
+        <section
+          id="hero"
+          className="hero d-flex flex-column justify-content-center align-items-center"
+          data-aos="fade"
+          data-aos-delay={1500}
+        >
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-lg-6 text-center">
+                <h2>Chuyển Token</h2>
+              </div>
+            </div>
+          </div>
+        </section>
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-6 text-center">
-              <h2>Chuyển Token</h2>
+          <div className="row">
+            <div className="col-lg-6 offset-lg-3">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input
+                    id="amount"
+                    placeholder="Nhập vào số lượng token muốn chuyển"
+                    type="number"
+                    value={amount ? amount : ""}
+                    onChange={(e) => setamount(e.target.value)}
+                    className="form-control"
+                    style={{ maxWidth: "400px", margin: "auto" }}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="description"></label>
+                  <input
+                    id="description"
+                    placeholder="Địa chỉ ví muốn gửi"
+                    type="text"
+                    value={accountAddress}
+                    className="form-control"
+                    style={{ maxWidth: "400px", margin: "auto" }}
+                  />
+                </div>
+                <div className="form-group text-center">
+                  <button
+                    style={{ marginTop: 10 }}
+                    type="submit"
+                    className="btn btn-primary"
+                  >
+                    hoàn thành thanh toán
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-6 offset-lg-3">
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <input
-                  id="amount"
-                  placeholder="Nhập vào số lượng token muốn chuyển"
-                  type="number"
-                  value={amount ? amount : ""}
-                  onChange={(e) => setamount(e.target.value)}
-                  className="form-control"
-                  style={{ maxWidth: "400px", margin: "auto" }}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description"></label>
-                <input
-                  id="description"
-                  placeholder="Địa chỉ ví muốn gửi"
-                  type="text"
-                  value={accountAddress}
-                  className="form-control"
-                  style={{ maxWidth: "400px", margin: "auto" }}
-                />
-              </div>
-              <div className="form-group text-center">
-                <button
-                  style={{ marginTop: 10 }}
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  hoàn thành thanh toán
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
       </LoadingOverlay>
     </>
   );
