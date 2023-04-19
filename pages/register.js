@@ -19,7 +19,7 @@ export default function register() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8080/apiv1/register", {
+      const response = await fetch("https://cryptictitans.onrender.com/apiv1/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Name, phoneNumber, address, email, password }),

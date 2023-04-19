@@ -5,10 +5,12 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import moment from "moment";
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:8080/apiv1/projects");
+  const res = await fetch("https://cryptictitans.onrender.com/apiv1/projects");
   const data = await res.json();
+  console.log(res);
   return { props: { data } };
 }
+
 export default function Home({ data }) {
   const [web3, setWeb3] = useState(null);
   const [accountAddress, setAccountAddress] = useState("");
@@ -45,7 +47,7 @@ export default function Home({ data }) {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-6 text-center">
-              <h2 style={{fontFamily:'auto'}}>
+              <h2 style={{ fontFamily: "auto" }}>
                 Chúng tôi là
                 <hao style={{ color: "#e3b11e ", padding: "6px" }}>
                   Cryptic Titan

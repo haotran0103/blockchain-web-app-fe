@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 import { format } from "date-fns";
 export async function getServerSideProps() {
-  const postData = await fetch(`http://localhost:8080/apiv1/projectCategory/3`);
+  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/projectCategory/3`);
   const post = await postData.json();
   return {
     props: {

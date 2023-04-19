@@ -6,7 +6,7 @@ import { format } from "date-fns";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
-  const postData = await fetch(`http://localhost:8080/apiv1/projects/${id}`);
+  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/projects/${id}`);
   const post = await postData.json();
 
   return {
@@ -26,7 +26,7 @@ const DetailProject = ({ post }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const rp = await fetch("http://localhost:8080/apiv1/payment", {
+      const rp = await fetch("https://cryptictitans.onrender.com/apiv1/payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -14,7 +14,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 export async function getServerSideProps() {
-  const res = await fetch("http://localhost:8080/apiv1/category");
+  const res = await fetch("https://cryptictitans.onrender.com/apiv1/category");
   const data = await res.json();
   return { props: { data } };
 }
@@ -116,7 +116,7 @@ export default function CreateProject({ data }) {
 
     // Send a POST request to the backend with the project data
     const res = await axios.post(
-      "http://localhost:8080/apiv1/projects",
+      "https://cryptictitans.onrender.com/apiv1/projects",
       projectData
     );
     setLoading(false);

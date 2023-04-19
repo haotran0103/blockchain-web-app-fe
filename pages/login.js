@@ -47,7 +47,7 @@ export default function Login() {
           await window.ethereum.enable();
           setWeb3(web3);
           getAccountAddress();
-          await fetch(`http://localhost:8080/apiv1/register/${accountAddress}`);
+          await fetch(`https://cryptictitans.onrender.com/apiv1/register/${accountAddress}`);
         } catch (error) {
           // User denied account access
           console.error(error);

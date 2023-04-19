@@ -13,7 +13,7 @@ export async function getServerSideProps(context) {
     const id = id_old.joinProject;
 
     const postData = await axios.get(
-      `http://localhost:8080/apiv1/projects/${id}`
+      `https://cryptictitans.onrender.com/apiv1/projects/${id}`
     );
     const post = postData.data;
 
@@ -61,7 +61,7 @@ const conductTransaction = ({ post }) => {
       };
       console.log(projectData);
       const res = await axios.post(
-        "http://localhost:8080/apiv1/transactionCtrl",
+        "https://cryptictitans.onrender.com/apiv1/transactionCtrl",
         projectData
       );
       // setLoading(false);

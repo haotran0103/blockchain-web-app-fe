@@ -7,7 +7,7 @@ export default function Order() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const rp = await fetch("http://localhost:8080/apiv1/payment", {
+      const rp = await fetch("https://cryptictitans.onrender.com/apiv1/payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

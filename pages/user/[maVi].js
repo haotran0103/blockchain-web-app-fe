@@ -9,9 +9,9 @@ export async function getServerSideProps(context) {
   const id_old = context.query;
   const id = id_old.maVi;
   console.log(id);
-  const postData = await fetch(`http://localhost:8080/apiv1/userprofile/${id}`);
+  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/userprofile/${id}`);
   const post = await postData.json();
-  const data = await fetch(`http://localhost:8080/apiv1/giaoDich/${id}`);
+  const data = await fetch(`https://cryptictitans.onrender.com/apiv1/giaoDich/${id}`);
   const joined = await data.json();
   console.log(joined);
   return {
