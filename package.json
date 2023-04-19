@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
     "@firebase/analytics": "^0.9.5",
     "@moralisweb3/next": "^2.18.2",
     "@wagmi/connectors": "^0.3.12",
@@ -33,8 +34,10 @@
     "react": "18.2.0",
     "react-datepicker": "^4.11.0",
     "react-dom": "18.2.0",
-    "react-loading-overlay": "^1.0.1",
+    "react-loader-spinner": "^5.3.4",
     "react-player": "^2.12.0",
+    "react-progressbar": "^15.4.1",
+    "react-spinners": "^0.13.8",
     "tls": "^0.0.1",
     "wagmi": "^0.12.10",
     "web3": "^1.9.0"
