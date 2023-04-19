@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
-import LoadingOverlay from "react-loading-overlay";
 import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
 import axios from "axios";
@@ -106,61 +105,59 @@ const conductTransaction = ({ post }) => {
 
   return (
     <>
-      <LoadingOverlay active={loading} spinner text="Đang thực hiện tác vụ...">
-        <section
-          id="hero"
-          className="hero d-flex flex-column justify-content-center align-items-center"
-          data-aos="fade"
-          data-aos-delay={1500}
-        >
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-6 text-center">
-                <h2>Chuyển Token</h2>
-              </div>
-            </div>
-          </div>
-        </section>
+      <section
+        id="hero"
+        className="hero d-flex flex-column justify-content-center align-items-center"
+        data-aos="fade"
+        data-aos-delay={1500}
+      >
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6 offset-lg-3">
-              <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input
-                    id="amount"
-                    placeholder="Nhập vào số lượng token muốn chuyển"
-                    type="number"
-                    value={amount ? amount : ""}
-                    onChange={(e) => setamount(e.target.value)}
-                    className="form-control"
-                    style={{ maxWidth: "400px", margin: "auto" }}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="description"></label>
-                  <input
-                    id="description"
-                    placeholder="Địa chỉ ví muốn gửi"
-                    type="text"
-                    value={post.maVi}
-                    className="form-control"
-                    style={{ maxWidth: "400px", margin: "auto" }}
-                  />
-                </div>
-                <div className="form-group text-center">
-                  <button
-                    style={{ marginTop: 10 }}
-                    type="submit"
-                    className="btn btn-primary"
-                  >
-                    hoàn thành thanh toán
-                  </button>
-                </div>
-              </form>
+          <div className="row justify-content-center">
+            <div className="col-lg-6 text-center">
+              <h2>Chuyển Token</h2>
             </div>
           </div>
         </div>
-      </LoadingOverlay>
+      </section>
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-6 offset-lg-3">
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  id="amount"
+                  placeholder="Nhập vào số lượng token muốn chuyển"
+                  type="number"
+                  value={amount ? amount : ""}
+                  onChange={(e) => setamount(e.target.value)}
+                  className="form-control"
+                  style={{ maxWidth: "400px", margin: "auto" }}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description"></label>
+                <input
+                  id="description"
+                  placeholder="Địa chỉ ví muốn gửi"
+                  type="text"
+                  value={post.maVi}
+                  className="form-control"
+                  style={{ maxWidth: "400px", margin: "auto" }}
+                />
+              </div>
+              <div className="form-group text-center">
+                <button
+                  style={{ marginTop: 10 }}
+                  type="submit"
+                  className="btn btn-primary"
+                >
+                  hoàn thành thanh toán
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
