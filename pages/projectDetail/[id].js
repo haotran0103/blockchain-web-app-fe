@@ -6,7 +6,9 @@ import { format } from "date-fns";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
-  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/projects/${id}`);
+  const postData = await fetch(
+    `https://cryptictitans.onrender.com/apiv1/projects/${id}`
+  );
   const post = await postData.json();
 
   return {
@@ -26,17 +28,20 @@ const DetailProject = ({ post }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const rp = await fetch("https://cryptictitans.onrender.com/apiv1/payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: 10000,
-          bankCode: "EXIMBANK",
-          orderDescription: "no orderDescription",
-          orderType: "billPayment",
-          language: "",
-        }),
-      });
+      const rp = await fetch(
+        "https://cryptictitans.onrender.com/apiv1/payment",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: 10000,
+            bankCode: "EXIMBANK",
+            orderDescription: "no orderDescription",
+            orderType: "billPayment",
+            language: "",
+          }),
+        }
+      );
       const data = await rp.json();
       window.location.href = data.successUrl; // redirect to payment gateway URL
     } catch (error) {
@@ -124,14 +129,22 @@ const DetailProject = ({ post }) => {
                     <strong>website</strong> <a href="#">{post.diaChiWeb}</a>
                   </li>
                   <li>
-                    <button className="btn-visit align-self-start">
-                      <Link
-                        style={{ color: "#ada9a9" }}
-                        href={`/transaction/${post.id}`}
-                      >
-                        tham gia dự án
-                      </Link>
-                    </button>
+                    {accountAddress ? (
+                      <button className="btn-visit align-self-start">
+                        <Link
+                          style={{ color: "#ada9a9" }}
+                          href={`/transaction/${post.id}`}
+                        >
+                          tham gia dự án
+                        </Link>
+                      </button>
+                    ) : (
+                      <button className="btn-visit align-self-start">
+                        <Link style={{ color: "#ada9a9" }} href={`/login`}>
+                          tham gia dự án
+                        </Link>
+                      </button>
+                    )}
                   </li>
                 </ul>
               </div>

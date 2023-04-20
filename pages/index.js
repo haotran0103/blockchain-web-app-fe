@@ -99,14 +99,22 @@ export default function Home({ data }) {
                         >
                           <i className="bi bi-link-45deg" />
                         </Link>
-                        <button>
-                          <Link
-                            style={{ color: "#858d8a" }}
-                            href={`/transaction/${category.id}`}
-                          >
-                            join
-                          </Link>
-                        </button>
+                        {accountAddress ? (
+                          <button>
+                            <Link
+                              href={`/transaction/${category.id}`}
+                              className="btn-get-started"
+                            >
+                              join
+                            </Link>
+                          </button>
+                        ) : (
+                          <button>
+                            <Link href="/login" className="btn-get-started">
+                              join
+                            </Link>
+                          </button>
+                        )}
                       </div>
                       <div className="user_information">
                         <progress className="my_progress" value={0} max={100} />
