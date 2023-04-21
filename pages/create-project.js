@@ -14,6 +14,7 @@ import { resolveProperties } from "ethers/lib/utils.js";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import Loading from "react-loading";
 export async function getServerSideProps() {
   const res = await fetch("https://cryptictitans.onrender.com/apiv1/category");
   const data = await res.json();
@@ -140,15 +141,12 @@ export default function CreateProject({ data }) {
       "https://cryptictitans.onrender.com/apiv1/projects",
       projectData
     );
-    saveData().then(() => {
-      setIsLoading(false);
-      alert("Lưu dữ liệu thành công!");
-    });
-    const datares = await res.data;
     // Check the response from the backend
     if (res.status === 201) {
+      setIsLoading(false);
       console.log("Project created successfully!");
       alert("thêm thành công");
+      const datares = await res.data;
       window.location.href = datares.dict;
     } else {
       console.log("Failed to create project");
@@ -169,15 +167,6 @@ export default function CreateProject({ data }) {
   };
   return (
     <>
-      {isLoading && (
-        <div className="text-center my-3">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <div>Đang lưu dữ liệu...</div>
-        </div>
-      )}
-
       <section
         id="hero"
         className="hero d-flex flex-column justify-content-center align-items-center"
@@ -529,6 +518,28 @@ export default function CreateProject({ data }) {
               </div>
             </form>
           </div>
+
+          {isLoading && (
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: "rgba(0, 0, 0, 0.5)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 999,
+              }}
+            >
+              <div className="spinner" />
+              <p style={{ color: "white", marginLeft: 10 }}>
+                Vui lòng đợi trong giây lát...
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

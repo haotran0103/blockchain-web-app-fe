@@ -96,7 +96,7 @@ const DetailProject = ({ post }) => {
             <div className="col-lg-8">
               <div className="portfolio-description">
                 <h2>{post.tenProject}</h2>
-                <p>Mô tả: {post.moTa}</p>
+                <p>Mô tả: <div dangerouslySetInnerHTML={{ __html: post.moTa }} /></p>
                 <div className="testimonial-item">
                   <p>
                     <i className="bi bi-quote quote-icon-left" />

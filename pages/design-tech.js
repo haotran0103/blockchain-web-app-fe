@@ -135,7 +135,7 @@ export default function desigh_tech({ post }) {
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
                       <strong>chức bụ trong dự án:</strong>{" "}
-                      <span>{post[0].chucVu}</span>
+                      <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
                     </li>
                   </ul>
                 </div>

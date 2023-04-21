@@ -109,7 +109,7 @@ export default function comics_and_illustration({ post }) {
               </div>
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
-              {post[0].moTa}
+              <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
               <p />
               <p className="py-3"></p>
               <Link href={`/projectDetail/${post[0].id}`}>

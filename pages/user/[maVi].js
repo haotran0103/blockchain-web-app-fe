@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useState } from "react";
 import Web3 from "web3";
+
 import moment from "moment";
 export async function getServerSideProps(context) {
   const id_old = context.query;

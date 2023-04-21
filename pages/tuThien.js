@@ -3,7 +3,9 @@ import React from "react";
 import moment from "moment";
 import { format } from "date-fns";
 export async function getServerSideProps() {
-  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/projectCategory/6`);
+  const postData = await fetch(
+    `https://cryptictitans.onrender.com/apiv1/projectCategory/6`
+  );
   const post = await postData.json();
   return {
     props: {
@@ -135,7 +137,7 @@ export default function comics_and_illustration({ post }) {
               </div>
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
-              {post[0].moTa}
+              <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
               <p />
               <p className="py-3"></p>
               <Link href={`/projectDetail/${post[0].id}`}>
