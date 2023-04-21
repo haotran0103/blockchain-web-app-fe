@@ -49,6 +49,7 @@ export default function CreateProject({ data }) {
   const [tienDo, settienDo] = useState("");
   const [anhBia, setanhBia] = useState(null);
   const [avatar, setavatar] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [websiteAddress, setwebsiteAddress] = useState("");
   const [video, setVideo] = useState(null);
   const currentDate = moment().format("DD/MM/YYYY");
@@ -79,7 +80,7 @@ export default function CreateProject({ data }) {
     getAccountAddress();
   }, []);
   const handleSubmit = async (e) => {
-    setLoading(true);
+    setIsLoading(true);
     e.preventDefault();
 
     // Create a reference for the project's image file
@@ -139,7 +140,10 @@ export default function CreateProject({ data }) {
       "https://cryptictitans.onrender.com/apiv1/projects",
       projectData
     );
-    setLoading(false);
+    saveData().then(() => {
+      setIsLoading(false);
+      alert("Lưu dữ liệu thành công!");
+    });
     const datares = await res.data;
     // Check the response from the backend
     if (res.status === 200) {
@@ -166,6 +170,15 @@ export default function CreateProject({ data }) {
   };
   return (
     <>
+      {isLoading && (
+        <div className="text-center my-3">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <div>Đang lưu dữ liệu...</div>
+        </div>
+      )}
+
       <section
         id="hero"
         className="hero d-flex flex-column justify-content-center align-items-center"
