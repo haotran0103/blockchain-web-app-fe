@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState,useRef  } from "react";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { useEffect } from "react";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {
   getStorage,
   ref as storageRef,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { Editor } from "@tinymce/tinymce-react";
 import serviceAccount from "../configs/serviceAccountKey.json";
 import { resolveProperties } from "ethers/lib/utils.js";
 import DatePicker from "react-datepicker";
@@ -45,12 +44,19 @@ export default function CreateProject({ data }) {
   const [loiHua, setloiHua] = useState("");
   const [theLoai, settheLoai] = useState("");
   const [moTaDuAn, setmoTaDuAn] = useState("");
+  const [tienDo, settienDo] = useState("");
   const [anhBia, setanhBia] = useState(null);
   const [websiteAddress, setwebsiteAddress] = useState("");
   const [video, setVideo] = useState(null);
   const currentDate = moment().format("DD/MM/YYYY");
   const [startDate, setStartDate] = useState(new Date());
   const disabledDates = [new Date(currentDate)];
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      setmoTaDuAn(editorRef.current.getContent());
+    }
+  };
 
   useEffect(() => {
     async function getAccountAddress() {
@@ -234,27 +240,7 @@ export default function CreateProject({ data }) {
                   />
                 </label>
               </div>
-              <div className="App">
-                <h2>Using CKEditor 5 build in React</h2>
-                <CKEditor
-                  editor={ClassicEditor}
-                  data="<p>Hello from CKEditor 5!</p>"
-                  onReady={(editor) => {
-                    // You can store the "editor" and use when it is needed.
-                    console.log("Editor is ready to use!", editor);
-                  }}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
-                  }}
-                  onBlur={(event, editor) => {
-                    console.log("Blur.", editor);
-                  }}
-                  onFocus={(event, editor) => {
-                    console.log("Focus.", editor);
-                  }}
-                />
-              </div>
+
               <div className="form-outline mb-4">
                 <label>
                   {" "}
@@ -356,33 +342,88 @@ export default function CreateProject({ data }) {
                   />
                 </label>
               </div>
-              <div className="form-outline mb-4">
-                <label htmlFor="comment">
-                  Lời hứa của người tạo dự án:
-                  <textarea
-                    className="form-control"
-                    rows={5}
-                    onChange={(e) => setloiHua(e.target.value)}
-                    value={loiHua}
-                    id="loiHua"
-                    style={{ width: "200%" }}
-                  />
-                </label>
-              </div>
-              <div className="form-outline mb-4">
-                <label htmlFor="comment">
+              <label htmlFor="comment">
                   Mô Tả Dự Án:
-                  <textarea
-                    className="form-control"
-                    rows={5}
-                    id="moTa"
-                    onChange={(e) => setmoTaDuAn(e.target.value)}
-                    value={moTaDuAn ?? ""}
-                    style={{ width: "200%" }}
-                  />
-                </label>
-              </div>
+              <Editor
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                initialValue="<p>This is the initial content of the editor.</p>"
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table paste code help wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | formatselect | " +
+                    "bold italic backcolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat | help",
+                  content_style:
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
 
+                }}
+                onChange={(event, editor) => {
+                  const content = editor.getContent();
+                  setmoTaDuAn(content);
+                }}
+              />
+               </label>
+              <label htmlFor="comment">
+                  lời hứa của người tạo dự án:
+              <Editor
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                initialValue="<p>This is the initial content of the editor.</p>"
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table paste code help wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | formatselect | " +
+                    "bold italic backcolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat | help",
+                  content_style:
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                }}
+                onChange={(event, editor) => {
+                  const content = editor.getContent();
+                  setloiHua(content);
+                }}
+              />
+               </label>
+              <label htmlFor="comment">
+                  tiến độ và cách dùng tiền kêu gọi:
+              <Editor
+                onInit={(evt, editor) => (editorRef.current = editor)}
+                initialValue="<p>This is the initial content of the editor.</p>"
+                init={{
+                  height: 500,
+                  menubar: false,
+                  plugins: [
+                    "advlist autolink lists link image charmap print preview anchor",
+                    "searchreplace visualblocks code fullscreen",
+                    "insertdatetime media table paste code help wordcount",
+                  ],
+                  toolbar:
+                    "undo redo | formatselect | " +
+                    "bold italic backcolor | alignleft aligncenter " +
+                    "alignright alignjustify | bullist numlist outdent indent | " +
+                    "removeformat | help",
+                  content_style:
+                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                }}
+                onChange={(event, editor) => {
+                  const content = editor.getContent();
+                  settienDo(content);
+                }}
+              />
+               </label>
               <h1>{message}</h1>
               <select
                 className="form-outline mb-4"
