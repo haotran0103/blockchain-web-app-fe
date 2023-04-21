@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { format } from "date-fns";
+
 export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
