@@ -1,4 +1,4 @@
-import React, { useState,useRef  } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { initializeApp } from "firebase/app";
 import { useEffect } from "react";
@@ -30,7 +30,9 @@ export default function CreateProject({ data }) {
   const [web3, setWeb3] = useState(null);
   const [accountAddress, setAccountAddress] = useState("");
   const [selectedFile1, setSelectedFile1] = useState(null);
+  const [selectedFile2, setSelectedFile2] = useState(null);
   const [imageUrl1, setImageUrl1] = useState("");
+  const [imageUrl2, setImageUrl2] = useState("");
   const [message, setMessage] = useState("");
   const [userName, setuserName] = useState("");
   const [loading, setLoading] = useState(false);
@@ -46,6 +48,7 @@ export default function CreateProject({ data }) {
   const [moTaDuAn, setmoTaDuAn] = useState("");
   const [tienDo, settienDo] = useState("");
   const [anhBia, setanhBia] = useState(null);
+  const [avatar, setavatar] = useState(null);
   const [websiteAddress, setwebsiteAddress] = useState("");
   const [video, setVideo] = useState(null);
   const currentDate = moment().format("DD/MM/YYYY");
@@ -84,14 +87,21 @@ export default function CreateProject({ data }) {
       storage,
       `projectImages/${selectedFile1.name}`
     );
-
+    const projectImageRef2 = storageRef(
+      storage,
+      `projectImages/${selectedFile2.name}`
+    );
     // Upload the image file to Firebase storage
     const projectImageSnapshot = await uploadBytesResumable(
       projectImageRef,
       selectedFile1
     );
+    const projectImageSnapshot2 = await uploadBytesResumable(
+      projectImageRef2,
+      selectedFile2
+    );
     const projectImageUrl = await getDownloadURL(projectImageSnapshot.ref);
-
+    const projectImageUrl2 = await getDownloadURL(projectImageSnapshot.ref);
     // Create a reference for the project's video file
     const projectVideoRef = storageRef(storage, `projectVideos/${video.name}`);
 
@@ -119,6 +129,8 @@ export default function CreateProject({ data }) {
       theLoai,
       video: projectVideoUrl,
       startDate,
+      avatarDuAn: projectImageUrl2,
+      tienDo,
     };
     console.log(accountAddress);
 
@@ -145,6 +157,12 @@ export default function CreateProject({ data }) {
     setSelectedFile1(file);
     setImageUrl1(URL.createObjectURL(file));
     setanhBia(event.target.files[0]);
+  };
+  const handleFileInputChange2 = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile2(file);
+    setImageUrl2(URL.createObjectURL(file));
+    setavatar(event.target.files[0]);
   };
   return (
     <>
@@ -290,17 +308,45 @@ export default function CreateProject({ data }) {
                 </label>
                 <div className="form-outline mb-4">
                   <label>
+                    avatar dự án
+                    <input
+                      type="file"
+                      id="anhbia"
+                      accept="image/*"
+                      required
+                      className="form-control form-control-lg"
+                      placeholder="upload hình ảnh đánh giá"
+                      onChange={handleFileInputChange2}
+                    />
+                  </label>
+                  {selectedFile2 && (
+                    <img
+                      style={{ width: "100%", height: "100%" }}
+                      src={imageUrl2}
+                      alt="Selected file"
+                    />
+                  )}
+                </div>
+                <div className="form-outline mb-4">
+                  <label>
                     ảnh bìa
                     <input
                       type="file"
                       id="anhbia"
+                      required
                       accept="image/*"
                       className="form-control form-control-lg"
                       placeholder="upload hình ảnh đánh giá"
                       onChange={handleFileInputChange1}
                     />
                   </label>
-                  {selectedFile1 && <img src={imageUrl1} alt="Selected file" />}
+                  {selectedFile1 && (
+                    <img
+                      style={{ width: "100%", height: "100%" }}
+                      src={imageUrl1}
+                      alt="Selected file"
+                    />
+                  )}
                 </div>
 
                 <div className="form-outline mb-4">
@@ -308,6 +354,7 @@ export default function CreateProject({ data }) {
                     video:
                     <input
                       type="file"
+                      required
                       accept="video/*"
                       onChange={(e) => setVideo(e.target.files[0])}
                     />
@@ -330,10 +377,11 @@ export default function CreateProject({ data }) {
               </div>
               <div className="form-outline mb-4">
                 <label>
-                  chức vụ
+                  Chức vụ của bạn trong dự án
                   <input
                     type="text"
                     id="chucVu"
+                    required
                     onChange={(e) => setchucVu(e.target.value)}
                     value={chucVu}
                     className="form-control form-control-lg"
@@ -343,87 +391,86 @@ export default function CreateProject({ data }) {
                 </label>
               </div>
               <label htmlFor="comment">
-                  Mô Tả Dự Án:
-              <Editor
-                onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue="<p>This is the initial content of the editor.</p>"
-                init={{
-                  height: 500,
-                  menubar: false,
-                  plugins: [
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media table paste code help wordcount",
-                  ],
-                  toolbar:
-                    "undo redo | formatselect | " +
-                    "bold italic backcolor | alignleft aligncenter " +
-                    "alignright alignjustify | bullist numlist outdent indent | " +
-                    "removeformat | help",
-                  content_style:
-                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-
-                }}
-                onChange={(event, editor) => {
-                  const content = editor.getContent();
-                  setmoTaDuAn(content);
-                }}
-              />
-               </label>
+                Mô Tả Dự Án:
+                <Editor
+                  onInit={(evt, editor) => (editorRef.current = editor)}
+                  initialValue=""
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      "advlist autolink lists link image charmap print preview anchor",
+                      "searchreplace visualblocks code fullscreen",
+                      "insertdatetime media table paste code help wordcount",
+                    ],
+                    toolbar:
+                      "undo redo | formatselect | " +
+                      "bold italic backcolor | alignleft aligncenter " +
+                      "alignright alignjustify | bullist numlist outdent indent | " +
+                      "removeformat | help",
+                    content_style:
+                      "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                  }}
+                  onChange={(event, editor) => {
+                    const content = editor.getContent();
+                    setmoTaDuAn(content);
+                  }}
+                />
+              </label>
               <label htmlFor="comment">
-                  lời hứa của người tạo dự án:
-              <Editor
-                onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue="<p>This is the initial content of the editor.</p>"
-                init={{
-                  height: 500,
-                  menubar: false,
-                  plugins: [
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media table paste code help wordcount",
-                  ],
-                  toolbar:
-                    "undo redo | formatselect | " +
-                    "bold italic backcolor | alignleft aligncenter " +
-                    "alignright alignjustify | bullist numlist outdent indent | " +
-                    "removeformat | help",
-                  content_style:
-                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-                }}
-                onChange={(event, editor) => {
-                  const content = editor.getContent();
-                  setloiHua(content);
-                }}
-              />
-               </label>
+                lời hứa của người tạo dự án:
+                <Editor
+                  onInit={(evt, editor) => (editorRef.current = editor)}
+                  initialValue=""
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      "advlist autolink lists link image charmap print preview anchor",
+                      "searchreplace visualblocks code fullscreen",
+                      "insertdatetime media table paste code help wordcount",
+                    ],
+                    toolbar:
+                      "undo redo | formatselect | " +
+                      "bold italic backcolor | alignleft aligncenter " +
+                      "alignright alignjustify | bullist numlist outdent indent | " +
+                      "removeformat | help",
+                    content_style:
+                      "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                  }}
+                  onChange={(event, editor) => {
+                    const content = editor.getContent();
+                    setloiHua(content);
+                  }}
+                />
+              </label>
               <label htmlFor="comment">
-                  tiến độ và cách dùng tiền kêu gọi:
-              <Editor
-                onInit={(evt, editor) => (editorRef.current = editor)}
-                initialValue="<p>This is the initial content of the editor.</p>"
-                init={{
-                  height: 500,
-                  menubar: false,
-                  plugins: [
-                    "advlist autolink lists link image charmap print preview anchor",
-                    "searchreplace visualblocks code fullscreen",
-                    "insertdatetime media table paste code help wordcount",
-                  ],
-                  toolbar:
-                    "undo redo | formatselect | " +
-                    "bold italic backcolor | alignleft aligncenter " +
-                    "alignright alignjustify | bullist numlist outdent indent | " +
-                    "removeformat | help",
-                  content_style:
-                    "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-                }}
-                onChange={(event, editor) => {
-                  const content = editor.getContent();
-                  settienDo(content);
-                }}
-              />
-               </label>
+                tiến độ và cách dùng tiền kêu gọi:
+                <Editor
+                  onInit={(evt, editor) => (editorRef.current = editor)}
+                  initialValue=""
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                      "advlist autolink lists link image charmap print preview anchor",
+                      "searchreplace visualblocks code fullscreen",
+                      "insertdatetime media table paste code help wordcount",
+                    ],
+                    toolbar:
+                      "undo redo | formatselect | " +
+                      "bold italic backcolor | alignleft aligncenter " +
+                      "alignright alignjustify | bullist numlist outdent indent | " +
+                      "removeformat | help",
+                    content_style:
+                      "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                  }}
+                  onChange={(event, editor) => {
+                    const content = editor.getContent();
+                    settienDo(content);
+                  }}
+                />
+              </label>
               <h1>{message}</h1>
               <select
                 className="form-outline mb-4"
