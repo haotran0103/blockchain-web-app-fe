@@ -146,10 +146,9 @@ export default function CreateProject({ data }) {
     });
     const datares = await res.data;
     // Check the response from the backend
-    if (res.status === 200) {
+    if (res.status === 201) {
       console.log("Project created successfully!");
       alert("thêm thành công");
-
       window.location.href = datares.dict;
     } else {
       console.log("Failed to create project");
