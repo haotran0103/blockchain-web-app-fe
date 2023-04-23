@@ -26,11 +26,35 @@ const VnpayReturn = () => {
   }, []);
 
   return (
-    <div className="container">
-      {paymentStatus === "success" && <p>Thanh toán thành công!</p>}
-      {paymentStatus === "failure" && <p>Thanh toán thất bại!</p>}
-      {paymentStatus === "error" && <p>Có lỗi xảy ra khi xử lý!</p>}
-      <Link href="/">quay về trang chủ</Link>
+    <div className="page-header d-flex align-items-center">
+      <div className="container position-relative">
+        <div className="row d-flex justify-content-center">
+          <div className="col-lg-6 text-center">
+            <div className="container">
+              {paymentStatus === "success" && (
+                <>
+                  <i className="fas fa-check-circle"></i>
+                  <p>Thanh toán thành công!</p>
+                </>
+              )}
+              {paymentStatus === "failure" && (
+                <>
+                  <i className="fas fa-times-circle"></i>
+                  <p>Thanh toán thất bại!</p>
+                </>
+              )}
+              {paymentStatus === "error" && (
+                <>
+                  <i className="fas fa-exclamation-circle">
+                    <p>Có lỗi xảy ra khi xử lý!</p>
+                  </i>
+                </>
+              )}
+              <Link href="/">quay về trang chủ</Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
