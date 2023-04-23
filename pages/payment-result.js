@@ -8,7 +8,7 @@ const VnpayReturn = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("/api/payment-return"); // Địa chỉ URL của backend
+        const response = await axios.get("/apiv1/vnpay_return"); // Địa chỉ URL của backend
         const { data } = response;
 
         if (data.code === "00") {
