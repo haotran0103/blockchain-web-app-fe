@@ -1,19 +1,38 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const VnpayReturn = () => {
-  const router = useRouter();
+  const [paymentStatus, setPaymentStatus] = useState("");
 
   useEffect(() => {
-    const vnpResponse = router.query;
-    if (vnpResponse.vnp_ResponseCode === "00") {
-      router.push("/payment-success"); // Điều hướng đến trang thanh toán thành công
-    } else {
-      router.push("/payment-failure"); // Điều hướng đến trang thanh toán thất bại
-    }
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/payment-return"); // Địa chỉ URL của backend
+        const { data } = response;
+
+        if (data.code === "00") {
+          setPaymentStatus("success");
+        } else {
+          setPaymentStatus("failure");
+        }
+      } catch (error) {
+        console.log(error);
+        setPaymentStatus("error");
+      }
+    };
+
+    fetchData();
   }, []);
 
-  return <div>Đang xử lý...</div>;
+  return (
+    <div className="container">
+      {paymentStatus === "success" && <p>Thanh toán thành công!</p>}
+      {paymentStatus === "failure" && <p>Thanh toán thất bại!</p>}
+      {paymentStatus === "error" && <p>Có lỗi xảy ra khi xử lý!</p>}
+      <Link href="/">quay về trang chủ</Link>
+    </div>
+  );
 };
 
 export default VnpayReturn;
