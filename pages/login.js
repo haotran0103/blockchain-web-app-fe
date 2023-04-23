@@ -102,8 +102,8 @@ export default function Login() {
           <div className="row d-flex justify-content-center">
             <div className="col-lg-6 text-center">
               <p>Login to get started</p>
-              <button type="sumit">
-                <Link href="/Login">Login with Metamask</Link>
+              <button onClick={handleLoginClick}>
+                <Link>Login with Metamask</Link>
               </button>
             </div>
           </div>

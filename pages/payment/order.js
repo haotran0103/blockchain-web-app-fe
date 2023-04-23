@@ -1,23 +1,29 @@
 import { useState } from "react";
-
+import QueryString from "qs";
 export default function Order() {
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [noiDung, setNoiDung] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const rp = await fetch("https://cryptictitans.onrender.com/apiv1/payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: amount,
-          bankCode: "",
-          orderDescription: noiDung,
-          orderType: "billPayment",
-          language: "",
-        }),
-      });
+      const datapayment = {
+        amount: amount,
+        bankCode: "",
+        orderInfo: noiDung,
+        orderType: "paybill",
+      };
+      const queryString = QueryString.stringify(datapayment);
+      const rp = await fetch(
+        "https://cryptictitans.onrender.com/apiv1/payment",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: queryString,
+        }
+      );
       const data = await rp.json();
       window.location.href = data.successUrl; // redirect to payment gateway URL
     } catch (error) {
@@ -58,7 +64,7 @@ export default function Order() {
                   id="amount"
                   placeholder="nhập vào số tiền muốn nạp"
                   type="number"
-                  value={amount}
+                  value={amount !== 0 ? amount : ""}
                   onChange={handleAmountChange}
                   className="form-control"
                   style={{ maxWidth: "400px", margin: "auto" }}
