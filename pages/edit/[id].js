@@ -169,7 +169,7 @@ export default function edit({ data, dataProject1 }) {
       setIsLoading(false);
       console.log("Project update successfully!");
       alert("update thành công");
-      window.location.href = `user/${accountAddress}`;
+      window.location.href = `/user/${accountAddress}`;
     } else {
       console.log("Failed to create project");
     }

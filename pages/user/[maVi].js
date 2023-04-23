@@ -11,13 +11,18 @@ export async function getServerSideProps(context) {
   const id = id_old.maVi;
   console.log(id);
   const postData = await fetch(
-    `https://cryptictitans.onrender.com/apiv1/userprofile/${id}`
+    `https://cryptictitans.onrender.com/apiv1/userprofile/${id}`,
+    {
+      method: "GET",
+    }
   );
   const post = await postData.json();
+  console.log("a");
   const data = await fetch(
     `https://cryptictitans.onrender.com/apiv1/giaoDich/${id}`
   );
   const joined = await data.json();
+  console.log("a");
   console.log(joined);
   return {
     props: {
@@ -50,7 +55,12 @@ export default function userProfile({ post, joined }) {
     galleryItems.push(
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
-          <img src={item.anhBia} className="img-fluid" alt={item.title} />
+          <img
+            style={{ width: 407, height: 432, objectFit: "cover" }}
+            src={item.anhBia}
+            className="img-fluid"
+            alt={item.title}
+          />
           <div className="gallery-links d-flex align-items-center justify-content-center">
             <a
               href={item.imageSrc}

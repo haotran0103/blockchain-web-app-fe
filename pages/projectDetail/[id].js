@@ -8,8 +8,12 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
   const postData = await fetch(
-    `https://cryptictitans.onrender.com/apiv1/projects/${id}`
+    `https://cryptictitans.onrender.com/apiv1/projects/${id}`,
+    {
+      method: "GET",
+    }
   );
+  console.log(postData);
   const post = await postData.json();
 
   return {
