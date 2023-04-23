@@ -47,7 +47,9 @@ export default function Login() {
           await window.ethereum.enable();
           setWeb3(web3);
           getAccountAddress();
-          await fetch(`https://cryptictitans.onrender.com/apiv1/register/${accountAddress}`);
+          await fetch(
+            `https://cryptictitans.onrender.com/apiv1/register/${accountAddress}`
+          );
         } catch (error) {
           // User denied account access
           console.error(error);
@@ -57,6 +59,7 @@ export default function Login() {
       else if (window.web3) {
         const web3 = new Web3(window.web3.currentProvider);
         setWeb3(web3);
+        window.location.href = "/";
       }
       // Non-dapp browsers
       else {
@@ -84,6 +87,7 @@ export default function Login() {
         // Request account access
         await window.ethereum.request({ method: "eth_requestAccounts" });
         handleAuth();
+        window.location.href = "/";
       } catch (error) {
         // User denied account access
         console.error(error);

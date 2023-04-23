@@ -134,15 +134,15 @@ export default function desigh_tech({ post }) {
                     </li>
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
-                      <strong>chức bụ trong dự án:</strong>{" "}
-                      <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
+                      <strong>chức vụ trong dự án:</strong>{" "}
+                        {post[0].chucVu}
                     </li>
                   </ul>
                 </div>
               </div>
               <p className="py-3"></p>
               <h4>Mô tả cuộc gọi vốn</h4>
-              {post[0].moTa}
+              <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
               <p />
               <p className="py-3"></p>
               <Link href={`/projectDetail/${post[0].id}`}>

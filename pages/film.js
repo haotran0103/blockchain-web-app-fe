@@ -21,7 +21,7 @@ export default function film({ post }) {
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
           <img
-            src={item.imageSrc}
+            src={item.anhBia}
             className="img-fluid"
             alt={item.title}
             style={{ width: 407, height: 432, objectFit: "cover" }}

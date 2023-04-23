@@ -10,9 +10,13 @@ export async function getServerSideProps(context) {
   const id_old = context.query;
   const id = id_old.maVi;
   console.log(id);
-  const postData = await fetch(`https://cryptictitans.onrender.com/apiv1/userprofile/${id}`);
+  const postData = await fetch(
+    `https://cryptictitans.onrender.com/apiv1/userprofile/${id}`
+  );
   const post = await postData.json();
-  const data = await fetch(`https://cryptictitans.onrender.com/apiv1/giaoDich/${id}`);
+  const data = await fetch(
+    `https://cryptictitans.onrender.com/apiv1/giaoDich/${id}`
+  );
   const joined = await data.json();
   console.log(joined);
   return {
@@ -55,10 +59,18 @@ export default function userProfile({ post, joined }) {
             />
             <button>
               <Link
-                style={{ color: "#858d8a" }}
+                style={{ color: "#858d8a", margin: "5px" }}
                 href={`/projectDetail/${item.id}`}
               >
                 chi tiết
+              </Link>
+            </button>
+            <button>
+              <Link
+                style={{ color: "#858d8a", margin: "5px" }}
+                href={`/edit/${item.id}`}
+              >
+                edit
               </Link>
             </button>
           </div>

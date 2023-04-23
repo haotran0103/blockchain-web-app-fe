@@ -20,7 +20,7 @@ export default function games({ post }) {
     galleryItems.push(
       <div className="col-xl-4 col-lg-4 col-md-6" key={item.id}>
         <div className="gallery-item h-100">
-          <img src={item.imageSrc} className="img-fluid" alt={item.title} />
+          <img src={item.anhBia} className="img-fluid" alt={item.title} />
           <div className="gallery-links d-flex align-items-center justify-content-center">
             <a
               href={item.imageSrc}

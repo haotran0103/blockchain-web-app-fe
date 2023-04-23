@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { format } from "date-fns";
-
+import Web3 from "web3";
 export async function getServerSideProps(context) {
   const { id } = context.query;
   console.log(id);
@@ -25,7 +25,17 @@ const DetailProject = ({ post }) => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
+  const [accountAddress, setAccountAddress] = useState("");
+  useEffect(() => {
+    const getAccountAddress = async () => {
+      const web3 = new Web3(window.ethereum);
+      const accounts = await web3.eth.getAccounts();
+      if (accounts.length > 0) {
+        setAccountAddress(accounts[0]);
+      }
+    };
+    getAccountAddress();
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -96,7 +106,9 @@ const DetailProject = ({ post }) => {
             <div className="col-lg-8">
               <div className="portfolio-description">
                 <h2>{post.tenProject}</h2>
-                <p>Mô tả: <div dangerouslySetInnerHTML={{ __html: post.moTa }} /></p>
+                <p>
+                  Mô tả: <div dangerouslySetInnerHTML={{ __html: post.moTa }} />
+                </p>
                 <div className="testimonial-item">
                   <p>
                     <i className="bi bi-quote quote-icon-left" />
@@ -117,7 +129,7 @@ const DetailProject = ({ post }) => {
             </div>
             <div className="col-lg-3">
               <div className="portfolio-info">
-                <h3>Project information</h3>
+                <h3>Thông tin dự án</h3>
                 <ul>
                   <li>
                     <strong>loại dự án</strong> <span>{post.tenLoai}</span>
