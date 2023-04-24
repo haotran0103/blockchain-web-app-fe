@@ -43,9 +43,12 @@ export default function film({ post }) {
               value={item.fundProgress}
               max={100}
             />
-            <p>Thông tin người gọi vốn: {item.callerInfo}</p>
+            <p>Tên dự án: {item.tenProject}</p>
             <p>Số người đã ủng hộ: {item.supportersCount}</p>
-            <p>Thời gian còn lại: {item.remainingTime}</p>
+            <p>
+              Thời gian còn lại:{" "}
+              {moment(item.ngayHetHan, "YYYY-MM-DD").diff(moment(), "day")}
+            </p>
           </div>
         </div>
       </div>
@@ -87,7 +90,7 @@ export default function film({ post }) {
             <div className="col-lg-5 content">
               <h2>{post[0].tenProject}</h2>
               <progress className="my_progress" value={0} max={100} />
-              <p className="fst-italic py-3">{post[0].loiHua}</p>
+              <p className="fst-italic py-3"><div dangerouslySetInnerHTML={{ __html: post[0].moTa }} /></p>
               <div className="row">
                 <h4>Thông tin người gọi vốn</h4>
                 <div className="col-lg-6">
