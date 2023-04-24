@@ -138,7 +138,7 @@ export default function film({ post }) {
                     <li>
                       <i className="bi bi-chevron-right" />{" "}
                       <strong>chức vụ trong dự án:</strong>{" "}
-                      <div dangerouslySetInnerHTML={{ __html: post[0].moTa }} />
+                      <span>{post[0].chucVu}</span>
                     </li>
                   </ul>
                 </div>

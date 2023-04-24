@@ -121,13 +121,22 @@ const DetailProject = ({ post }) => {
                   </p>
                   <div>
                     <img
-                      src="assets/img/testimonials/testimonials-2.jpg"
+                      src={
+                        post.anhBia
+                          ? post.anhBia
+                          : "/public/assets/img/shiba.jpg"
+                      }
                       className="testimonial-img"
                       alt=""
                     />
                     <h3>Tên người gọi vốn : {post.userName}</h3>
                     <h4>chức vụ: {post.chucVu}</h4>
                   </div>
+                  <p>
+                    <i className="bi bi-quote quote-icon-left" />
+                    {post.tienDo}
+                    <i className="bi bi-quote quote-icon-right" />
+                  </p>
                 </div>
               </div>
             </div>
